@@ -1,0 +1,29 @@
+{% extends "exam/base.html" %}
+
+{% block title %}
+Test
+{% endblock %}
+
+{% block body %}
+	<header>
+		<div class="logout-btn">
+		<a href="{% url 'logout' %}">LogOut</a>
+		</div>
+		
+	</header>
+
+	<div>
+		<h2>Quiz</h2>
+		<ol>
+			{% for question in questions %}
+				<li>
+					<b>Question.</b> <i>{{ question.question }}</i>
+					{% for choice in question.choices.all %}
+						<li> <input type="radio" name="choice" value="{{choice.value}}">{{choice.choice}}</li>
+					{% endfor %}
+				</li>
+			{% endfor %}
+		</ol>
+	</div>
+
+{% endblock %}

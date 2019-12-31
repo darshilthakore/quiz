@@ -48,9 +48,20 @@ def register_view(request):
 
 
 def topic_view(request, subject_code):
+	print("im in topic_view")
 	topics = Topic.objects.filter(subject=subject_code)
 	context = {
 		"topics": topics,
 	}
 
 	return render(request, "exam/topics.html", context)
+
+
+def test_view(request, topic_id):
+	print("im in test")
+	questions = Question.objects.filter(topic=topic_id)
+	context = {
+		"questions": questions,
+	}
+
+	return render(request, "exam/test.html", context)
