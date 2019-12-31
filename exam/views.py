@@ -5,6 +5,7 @@ from django.http import HttpResponse, HttpResponseRedirect, Http404, JsonRespons
 from django.urls import reverse
 
 # Create your views here.
+from .models import Subject, Topic, Question, Choice
 
 def index(request):
 	if not request.user.is_authenticated:
