@@ -11,7 +11,12 @@ def index(request):
 	if not request.user.is_authenticated:
 		return render(request, "exam/login.html", {"message": None})
 
-	return render(request, "exam/index.html")
+
+	context = {
+		"subjects" : Subject.objects.all(),
+	}
+
+	return render(request, "exam/index.html", context)
 
 def login_view(request):
 	username = request.POST["username"]
@@ -40,3 +45,12 @@ def register_view(request):
 	login(request, user)
 
 	return HttpResponseRedirect(reverse("index"))
+
+
+def topic_view(request, subject_code):
+	topics = Topic.objects.filter(subject=subject_code)
+	context = {
+		"topics": topics,
+	}
+
+	return render(request, "exam/topics.html", context)

@@ -12,15 +12,18 @@ Dashboard
 		</div>
 		
 	</header>
-	<div>
-		<h2>Subjects</h2>
-		<ul>
-			{% for subject in subjects %}
-				<li><a href="{% url 'topics' subject.code %}">{{ subject.code }} | {{ subject.name }}</a></li>
-			{% empty %}
-				<b>No Subjects.</b>
-			{% endfor %}
-		</ul>
 
+	<div>
+		<h2>Topics</h2>
+		<ol>
+			{% for topic in topics %}
+				<li><a href="">{{topic}}</a></li>
+			{% empty %}
+				<b>No topics.</b>
+			{% endfor %}
+		</ol>
 	</div>
+
+
+
 {% endblock %}
