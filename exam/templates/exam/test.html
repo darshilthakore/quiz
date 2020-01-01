@@ -5,6 +5,28 @@ Test
 {% endblock %}
 
 {% block body %}
+<script>
+	alert("Instructions");
+
+	document.addEventListener('DOMContentLoaded', () => {
+		var count = 15;
+		var interval = setInterval(() => {
+			document.querySelector('#time').innerHTML = count;
+			count--
+			if (count === 0) {
+				clearInterval(interval);
+				// document.querySelector('#time').innerHTML = "Timeup";
+				alert("Timeup");
+
+			}
+		}, 1000);
+	});
+
+
+
+
+
+</script>
 	<header>
 		<div class="logout-btn">
 		<a href="{% url 'logout' %}">LogOut</a>
@@ -14,13 +36,16 @@ Test
 
 	<div>
 		<h2>Quiz</h2>
+		<b>Time: <div id="time">Test Begins</div></b>
 		<ol>
 			{% for question in questions %}
 				<li>
 					<b>Question.</b> <i>{{ question.question }}</i>
+					<ol type="A">
 					{% for choice in question.choices.all %}
-						<li> <input type="radio" name="choice" value="{{choice.value}}">{{choice.choice}}</li>
+						<li><input type="radio" name="{{question.question}}" value="{{choice.value}}">{{choice.choice}}<br></li>
 					{% endfor %}
+					</ol>
 				</li>
 			{% endfor %}
 		</ol>
