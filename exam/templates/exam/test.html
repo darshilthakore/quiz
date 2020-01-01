@@ -20,9 +20,15 @@ Test
 
 			}
 		}, 1000);
+
+		{% for question in questions %}
+
+			document.querySelector('#{{question.id}}').style.backgroundColor = "#7FFF00";
+		{% endfor %}
+
 	});
 
-
+	
 
 
 
@@ -37,18 +43,24 @@ Test
 	<div>
 		<h2>Quiz</h2>
 		<b>Time: <div id="time">Test Begins</div></b>
+		<div id="question-status">
+			{% for question in questions %}
+				<button id="{{question.id}}">{{forloop.counter}}</button>
+			{% endfor %}
+		</div>
 		<ol>
 			{% for question in questions %}
 				<li>
 					<b>Question.</b> <i>{{ question.question }}</i>
 					<ol type="A">
 					{% for choice in question.choices.all %}
-						<li><input type="radio" name="{{question.question}}" value="{{choice.value}}">{{choice.choice}}<br></li>
+						<li><input type="radio" name="{{question.id}}" value="{{choice.value}}">{{choice.choice}}<br></li>
 					{% endfor %}
 					</ol>
 				</li>
 			{% endfor %}
 		</ol>
+
 	</div>
 
 {% endblock %}
