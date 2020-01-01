@@ -12,7 +12,7 @@ Test
 		var count = 15;
 		var interval = setInterval(() => {
 			document.querySelector('#time').innerHTML = count;
-			count--
+			count--;
 			if (count === 0) {
 				clearInterval(interval);
 				// document.querySelector('#time').innerHTML = "Timeup";
@@ -20,17 +20,12 @@ Test
 
 			}
 		}, 1000);
-
 		{% for question in questions %}
-
-			document.querySelector('#{{question.id}}').style.backgroundColor = "#7FFF00";
+			document.getElementById("{{question.id}}").style.backgroundColor = "green";
 		{% endfor %}
+		
 
 	});
-
-	
-
-
 
 </script>
 	<header>
@@ -43,7 +38,7 @@ Test
 	<div>
 		<h2>Quiz</h2>
 		<b>Time: <div id="time">Test Begins</div></b>
-		<div id="question-status">
+		<div>
 			{% for question in questions %}
 				<button id="{{question.id}}">{{forloop.counter}}</button>
 			{% endfor %}
