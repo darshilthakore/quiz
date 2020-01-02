@@ -20,12 +20,26 @@ Test
 
 			}
 		}, 1000);
-		{% for question in questions %}
-			document.getElementById("{{question.id}}").style.backgroundColor = "green";
-		{% endfor %}
+		
+		// {% for question in questions %}
+		// 	document.getElementById("{{question.id}}").style.backgroundColor = "green";
+		// {% endfor %}
+
 		
 
 	});
+
+	function btnch(obj) {
+
+		
+			// var x = document.querySelectorAll('[name={{question.id}}]');
+		var value = obj.name;
+			// var test = document.querySelectorAll('[name={{question.id}}]');
+		document.getElementById(value).style.backgroundColor = "green";
+
+	}
+
+
 
 </script>
 	<header>
@@ -49,7 +63,7 @@ Test
 					<b>Question.</b> <i>{{ question.question }}</i>
 					<ol type="A">
 					{% for choice in question.choices.all %}
-						<li><input type="radio" name="{{question.id}}" value="{{choice.value}}">{{choice.choice}}<br></li>
+						<li><input type="radio" name="{{question.id}}" value="{{choice.value}}" onchange="btnch(this)">{{choice.choice}}<br></li>
 					{% endfor %}
 					</ol>
 				</li>
