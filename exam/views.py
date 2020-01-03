@@ -5,7 +5,7 @@ from django.http import HttpResponse, HttpResponseRedirect, Http404, JsonRespons
 from django.urls import reverse
 
 # Create your views here.
-from .models import Subject, Topic, Question, Choice
+from .models import Subject, Topic, Question, Choice, Result
 
 def index(request):
 	if not request.user.is_authenticated:
@@ -70,6 +70,7 @@ def test_view(request, topic_id):
 
 def score_calculator(request, topic_id):
 	if request.method == "POST":
+		topic = Topic.objects.get(pk=topic_id)
 		print("im in score_calculator")
 		marks = 0
 		print(f"marks are {marks}")
@@ -96,6 +97,9 @@ def score_calculator(request, topic_id):
 			if response[i] == actual_answer[i]:
 				marks += 1
 		print(f"Marks are {marks} out of {len(actual_answer)}")
+
+		result = Result(user=request.user.first_name, topic=topic, marks_obtained=marks, marks_total=len(actual_answer))
+		result.save()
 
 
 		return render(request, "exam/index.html")
