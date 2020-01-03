@@ -24,20 +24,57 @@ Test
 		// {% for question in questions %}
 		// 	document.getElementById("{{question.id}}").style.backgroundColor = "green";
 		// {% endfor %}
+		var currentTab = 0; // Current tab is set to be the first tab (0)
+		// showTab(currentTab); // Display the current tab
 
-		
+		console.log("currentTab is " + currentTab);	
+		showTab(currentTab);
+
 
 	});
 
+	var curr = 0;
+	console.log("curr is" + curr);
+	// showTab(curr);
+	function showTab(n) {
+		console.log("n is " + n)
+		console.log("curr inside showTab is" + curr);
+		curr = n;
+		console.log("new curr in showTab is" + curr);
+		var x = document.getElementsByClassName("que");
+		x[n].style.display = "block";
+
+
+  // This function will display the specified tab of the form ...
+	}
+
+
 	function btnch(obj) {
 
-		
+		if (obj.checked === true) {
 			// var x = document.querySelectorAll('[name={{question.id}}]');
-		var value = obj.name;
-			// var test = document.querySelectorAll('[name={{question.id}}]');
-		document.getElementById(value).style.backgroundColor = "green";
+		
+			var value = obj.name;
+				// var test = document.querySelectorAll('[name={{question.id}}]');
+			var button = document.getElementById(value);
+			button.style.backgroundColor = "green";
+		}
 
 	}
+
+	function nav(obj) {
+		var x = document.getElementsByClassName("que");
+		console.log("curr inside nav is" + curr);
+		x[curr].style.display = "none";
+		var questionno = obj.id - 1;
+		console.log("questionno inside nave is" + questionno);
+		// curr = questionno;
+		showTab(questionno);
+
+	}
+
+
+
 
 
 
@@ -54,19 +91,24 @@ Test
 		<b>Time: <div id="time">Test Begins</div></b>
 		<div>
 			{% for question in questions %}
-				<button id="{{question.id}}">{{forloop.counter}}</button>
+				<button id="{{question.id}}" onclick="nav(this)">{{forloop.counter}}</button>
 			{% endfor %}
 		</div>
 		<ol>
 			{% for question in questions %}
-				<li>
-					<b>Question.</b> <i>{{ question.question }}</i>
-					<ol type="A">
-					{% for choice in question.choices.all %}
-						<li><input type="radio" name="{{question.id}}" value="{{choice.value}}" onchange="btnch(this)">{{choice.choice}}<br></li>
-					{% endfor %}
-					</ol>
-				</li>
+
+				
+				<div class="que">
+					<li>
+						<b>Question.</b> <i>{{ question.question }}</i>
+						<ol type="A">
+						{% for choice in question.choices.all %}
+							<li><input type="radio" name="{{question.id}}" value="{{choice.value}}" onchange="btnch(this)">{{choice.choice}}<br></li>
+						{% endfor %}
+						</ol>
+					</li>
+				</div>
+				
 			{% endfor %}
 		</ol>
 
