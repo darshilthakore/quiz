@@ -105,7 +105,7 @@ Test
 						<b>Question.{{forloop.counter}}</b> <i>{{ question.question }}</i>
 						<ol type="A">
 							{% for choice in question.choices.all %}
-								<li><input type="radio" name="{{question.id}}" value="{{choice.value}}" onchange="btnch(this)">{{choice.choice}}<br></li>
+								<li><input type="radio" name="{{question.id}}" value="{{choice.choice}}" onchange="btnch(this)">{{choice.choice}}<br></li>
 							{% endfor %}
 						</ol>
 					

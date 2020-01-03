@@ -65,7 +65,7 @@ def test_view(request, topic_id):
 		"topicid": topic_id,
 	}
 
-	return render(request, "exam/test.html", context)
+	return render(request, "exam/test.html", context)	
 
 
 def score_calculator(request, topic_id):
@@ -74,12 +74,28 @@ def score_calculator(request, topic_id):
 		marks = 0
 		print(f"marks are {marks}")
 		questions = Question.objects.filter(topic=topic_id)
+		response = []
 		for question in questions:
 			print(f"id is {question.id}")
-			m = int(question.id)
-			resp = request.POST.get(m)
-			print(f"response for {question} is : {resp}")
+			r = question.id
+			m = request.POST.get(str(r),'')
+
+			print(f"response for {question} is : {m}")
+			response.append(m)
 			# if resp == question.choices.value:
 			# 	marks += 1
+		print(f"answers by user is: {response}")
+		actual_answer = []
+		for question in questions:
+			choices = question.choices.filter(question=question)
+			for choice in choices:
+				if choice.value == True:
+					actual_answer.append(choice.choice)
+		print(f"actual answers : {actual_answer}")			
+		for i in range(len(response)):
+			if response[i] == actual_answer[i]:
+				marks += 1
+		print(f"Marks are {marks} out of {len(actual_answer)}")
+
 
 		return render(request, "exam/index.html")
