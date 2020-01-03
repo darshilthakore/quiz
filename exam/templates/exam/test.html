@@ -91,25 +91,31 @@ Test
 		<b>Time: <div id="time">Test Begins</div></b>
 		<div>
 			{% for question in questions %}
-				<button id="{{question.id}}" onclick="nav(this)">{{forloop.counter}}</button>
+				<button class="navbtn" id="{{question.id}}" onclick="nav(this)">{{forloop.counter}}</button>
 			{% endfor %}
 		</div>
 		<ol>
-			{% for question in questions %}
+			<form action="{% url 'score' topicid %}" method="post" onsubmit="return confirm('You are about to submit your test answers, If you confirm this, then you cannot change your answers again')">
+				{% csrf_token %}
+				{% for question in questions %}
 
-				
-				<div class="que">
-					<li>
-						<b>Question.</b> <i>{{ question.question }}</i>
+					
+					<div class="que">
+					
+						<b>Question.{{forloop.counter}}</b> <i>{{ question.question }}</i>
 						<ol type="A">
-						{% for choice in question.choices.all %}
-							<li><input type="radio" name="{{question.id}}" value="{{choice.value}}" onchange="btnch(this)">{{choice.choice}}<br></li>
-						{% endfor %}
+							{% for choice in question.choices.all %}
+								<li><input type="radio" name="{{question.id}}" value="{{choice.value}}" onchange="btnch(this)">{{choice.choice}}<br></li>
+							{% endfor %}
 						</ol>
-					</li>
-				</div>
-				
-			{% endfor %}
+					
+					</div>
+					
+				{% endfor %}
+				<div class="finishtest">
+					<input type="submit" value="Finish Test"/>
+				</div>	
+			</form>
 		</ol>
 
 	</div>

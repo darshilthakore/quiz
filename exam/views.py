@@ -62,6 +62,24 @@ def test_view(request, topic_id):
 	questions = Question.objects.filter(topic=topic_id)
 	context = {
 		"questions": questions,
+		"topicid": topic_id,
 	}
 
 	return render(request, "exam/test.html", context)
+
+
+def score_calculator(request, topic_id):
+	if request.method == "POST":
+		print("im in score_calculator")
+		marks = 0
+		print(f"marks are {marks}")
+		questions = Question.objects.filter(topic=topic_id)
+		for question in questions:
+			print(f"id is {question.id}")
+			m = int(question.id)
+			resp = request.POST.get(m)
+			print(f"response for {question} is : {resp}")
+			# if resp == question.choices.value:
+			# 	marks += 1
+
+		return render(request, "exam/index.html")
