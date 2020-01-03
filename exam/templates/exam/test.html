@@ -17,6 +17,8 @@ Test
 				clearInterval(interval);
 				// document.querySelector('#time').innerHTML = "Timeup";
 				alert("Timeup");
+				var form = document.querySelector('#myform');
+				form.submit();
 
 			}
 		}, 1000);
@@ -95,7 +97,7 @@ Test
 			{% endfor %}
 		</div>
 		<ol>
-			<form action="{% url 'score' topicid %}" method="post" onsubmit="return confirm('You are about to submit your test answers, If you confirm this, then you cannot change your answers again')">
+			<form id="myform" action="{% url 'score' topicid %}" method="post" onsubmit="return confirm('You are about to submit your test answers, If you confirm this, then you cannot change your answers again')">
 				{% csrf_token %}
 				{% for question in questions %}
 
