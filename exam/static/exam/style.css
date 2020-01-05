@@ -19,7 +19,7 @@
 	z-index: 1;
 	top: 0;
 	right: 0;
-	background-color: white;
+	background-color: lightyellow;
 	overflow-x: hidden;
 }
 
@@ -28,7 +28,7 @@
 	text-decoration: none;
 	font-size: 20px;
 	color: black;
-	display: block;
+/*	display: block;*/
 }
 
 .logout-btn a:hover {
@@ -40,6 +40,7 @@
 	font-size: 30px;
 	font-style: bold;
 	margin-bottom: 300px;
+	display: inline;
 	background-color: skyblue;
 	width: 100%;
 	position: fixed;
@@ -63,3 +64,21 @@ a:hover {
 	color: black;
 	text-decoration: none;
 }
+
+.home-btn a {
+
+	text-decoration: none;
+	font-size: 20px;
+	color: black;
+/*	display: block;*/
+}
+
+.home-btn a:hover {
+  background-color: lightgrey;
+  color: black;
+}
+
+#header div {
+	display: inline;
+}
+
