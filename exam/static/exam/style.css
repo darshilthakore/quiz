@@ -1,0 +1,11 @@
+.que {
+	display: none;
+}
+
+.navbtn {
+	width: 40px;
+	height: 40px;
+	background-color: gray;
+	border: none;
+
+}

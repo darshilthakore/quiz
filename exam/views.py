@@ -70,6 +70,7 @@ def test_view(request, topic_id):
 
 def score_calculator(request, topic_id):
 	if request.method == "POST":
+		fname = request.user.first_name
 		topic = Topic.objects.get(pk=topic_id)
 		print("im in score_calculator")
 		marks = 0
@@ -87,19 +88,34 @@ def score_calculator(request, topic_id):
 			# 	marks += 1
 		print(f"answers by user is: {response}")
 		actual_answer = []
+		
 		for question in questions:
 			choices = question.choices.filter(question=question)
 			for choice in choices:
 				if choice.value == True:
 					actual_answer.append(choice.choice)
-		print(f"actual answers : {actual_answer}")			
+		print(f"actual answers : {actual_answer}")
+		total_marks = len(actual_answer)			
 		for i in range(len(response)):
 			if response[i] == actual_answer[i]:
 				marks += 1
-		print(f"Marks are {marks} out of {len(actual_answer)}")
+		print(f"Marks are {marks} out of {total_marks}")
 
-		result = Result(user=request.user.first_name, topic=topic, marks_obtained=marks, marks_total=len(actual_answer))
+
+		result = Result(user=fname, topic=topic, marks_obtained=marks, marks_total=total_marks)
 		result.save()
 
+		context = {
+			"marks": marks,
+			"topic": topic,
+			"marks_total": total_marks,
+			"user": fname,
+			"actual_answer": actual_answer,
+			"response": response,
+			"var": zip(actual_answer, response),
 
-		return render(request, "exam/index.html")
+
+		}
+
+
+		return render(request, "exam/result.html", context)

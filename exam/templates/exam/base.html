@@ -1,24 +1,18 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
 	<head>
 		<title>{% block title %} {% endblock %}</title>
-		<style>
-			.que {
-				display: none;
-			}
-
-			.navbtn {
-				width: 40px;
-				height: 40px;
-				background-color: gray;
-				border: none;
-
-			}
-</style>
+		<link rel="stylesheet" type="text/css" href="{% static 'exam/style.css' %}">
 	</head>
 	<body>
 		<header id="header">Quizzo - Give an online quiz of what interests you.</header>
-		
+		<header>
+			<div class="logout-btn">
+			<a href="{% url 'logout' %}">LogOut</a>
+			</div>
+			
+		</header>
 
 		{% block body %}
 		{% endblock %}

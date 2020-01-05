@@ -1,37 +1,41 @@
-{% extends "exam/base.html" %}
-{% block title %} 
-Quizzo - Platform to conduct quizez online
-{% endblock %}
-
-{% block body %}
-	<div class="row">
-	<div class="logincolumn">
-		<h1>Login</h1>
-		{% if message %}
-			<div>
-				{{ message }}
+{% load static %}
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Quizzo - Platform to conduct quizez online</title>
+		<link rel="stylesheet" type="text/css" href="{% static 'exam/login.css' %}">
+	</head>
+	<body>
+		<header id="header">Quizzo - Give an online quiz of what interests you.</header>
+		<div class="row">
+			<div class="logincolumn">
+				<h1>Login</h1>
+				{% if message %}
+					<div>
+						{{ message }}
+					</div>
+				{% endif %}
+				<form action="{% url 'login' %}" method="post">
+					{% csrf_token %}
+					<input type="text" name="username"/><br>
+					<input type="password" name="password"/><br>
+					<input type="submit" value="Login"/><br>
+					
+				</form>
 			</div>
-		{% endif %}
-		<form action="{% url 'login' %}" method="post">
-			{% csrf_token %}
-			<input type="text" name="username"/><br>
-			<input type="password" name="password"/><br>
-			<input type="submit" value="Login"/><br>
-			
-		</form>
-	</div>
-	<div class="logincolumn">
-		<h1>Register</h1>
-		<form action="{% url 'register' %}" method="post">
-			{% csrf_token %}
-			<input type="text" name="first" placeholder="First Name"/><br>
-			<input type="text" name="last" placeholder="Last Name"/><br>
-			<input type="text" name="username" placeholder="username"/><br>
-			<input type="password" name="password" placeholder="password"/><br>
-			<input type="email" name="email" placeholder="email"/><br>
-			<input type="submit" value="Register"><br>
-		</form>
-		
-	</div>
-
-{% endblock %}
+			<div class="logincolumn">
+				<h1>Register</h1>
+				<form action="{% url 'register' %}" method="post">
+					{% csrf_token %}
+					<input type="text" name="first" placeholder="First Name"/><br>
+					<input type="text" name="last" placeholder="Last Name"/><br>
+					<input type="text" name="username" placeholder="username"/><br>
+					<input type="password" name="password" placeholder="password"/><br>
+					<input type="email" name="email" placeholder="email"/><br>
+					<input type="submit" value="Register"><br>
+				</form>
+				
+			</div>
+		</div>
+	</body>
+</html>

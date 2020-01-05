@@ -1,0 +1,37 @@
+{% extends "exam/base.html" %}
+
+{% block title %}
+Your Result
+
+{% endblock %}
+
+{% block body %}
+
+	<div>
+		<h2>Results</h2>
+		<h3>User : {{user}}</h3>
+
+		<table>
+			<tr>
+				<th>Q no.</th>
+				<th>Answer.</th>
+				<th>Your Response</th>
+			</tr>
+			{% for a,b in var %}
+			
+			<tr>
+				<td>{{forloop.counter}}</td>
+				<td>{{a}}</td>
+				<td>{{b}}</td>	
+			</tr>
+
+			{% endfor %}			
+		</table>
+	</div>
+
+	<div id="result">
+		<h2>Your Score: {{marks}} out of {{marks_total}}</h2>
+		
+	</div>
+
+{% endblock %}
