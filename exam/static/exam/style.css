@@ -9,3 +9,44 @@
 	border: none;
 
 }
+
+
+.recent {
+	height: 100%;
+	width: 300px;
+	position: fixed;
+	z-index: 1;
+	top: 0;
+	right: 0;
+	background-color: lightgrey;
+	overflow-x: hidden;
+}
+
+.logout-btn a {
+
+	text-decoration: none;
+	font-size: 20px;
+	color: black;
+	display: block;
+}
+
+.logout-btn a:hover {
+  background-color: lightgrey;
+  color: black;
+}
+
+#header {
+	font-size: 30px;
+	font-style: bold;
+	margin-bottom: 300px;
+	background-color: skyblue;
+	width: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+
+}
+
+.mainbody {
+	margin-top: 100px;
+}

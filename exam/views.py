@@ -10,10 +10,14 @@ from .models import Subject, Topic, Question, Choice, Result
 def index(request):
 	if not request.user.is_authenticated:
 		return render(request, "exam/login.html", {"message": None})
+	fname = request.user.first_name
+	activity = Result.objects.filter(user=fname)
 
 
 	context = {
 		"subjects" : Subject.objects.all(),
+		"activities": activity,
+		"user": fname,
 	}
 
 	return render(request, "exam/index.html", context)
@@ -50,8 +54,12 @@ def register_view(request):
 def topic_view(request, subject_code):
 	print("im in topic_view")
 	topics = Topic.objects.filter(subject=subject_code)
+	fname = request.user.first_name
+	activity = Result.objects.filter(user=fname)
 	context = {
 		"topics": topics,
+		"activities": activity,
+		"user": fname,
 	}
 
 	return render(request, "exam/topics.html", context)
@@ -60,9 +68,13 @@ def topic_view(request, subject_code):
 def test_view(request, topic_id):
 	print("im in test")
 	questions = Question.objects.filter(topic=topic_id)
+	fname = request.user.first_name
+	activity = Result.objects.filter(user=fname)
 	context = {
 		"questions": questions,
 		"topicid": topic_id,
+		"activities": activity,
+		"user": fname,
 	}
 
 	return render(request, "exam/test.html", context)	
@@ -105,6 +117,9 @@ def score_calculator(request, topic_id):
 		result = Result(user=fname, topic=topic, marks_obtained=marks, marks_total=total_marks)
 		result.save()
 
+		fname = request.user.first_name
+		activity = Result.objects.filter(user=fname)
+
 		context = {
 			"marks": marks,
 			"topic": topic,
@@ -113,6 +128,8 @@ def score_calculator(request, topic_id):
 			"actual_answer": actual_answer,
 			"response": response,
 			"var": zip(actual_answer, response),
+			"activities": activity,
+			"user": fname,
 
 
 		}

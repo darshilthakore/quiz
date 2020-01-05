@@ -21,3 +21,18 @@ Dashboard
 
 
 {% endblock %}
+
+{% block content %}
+	<ol>
+		{% for activity in activities %}
+			<li type="1">
+				<b>Test: {{activity.topic}}</b>
+				<ul>
+					<li>Score : {{activity.marks_obtained}} out of {{activity.marks_total}}</li>
+				</ul>
+			</li>
+		{% empty %}
+			<b>No Recent Activity.</b>
+		{% endfor %}
+	</ol>	
+{% endblock %}
