@@ -13,3 +13,15 @@
 	clear: both;
 }
 
+
+#header {
+	font-size: 30px;
+	font-style: bold;
+	margin-bottom: 300px;
+	background-color: skyblue;
+	width: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+
+}
