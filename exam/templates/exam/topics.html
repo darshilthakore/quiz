@@ -8,7 +8,8 @@ Dashboard | {{user}}
 {% block body %}
 	
 	<div>
-		<h2>Topics</h2>
+		<h2>{{subject.name}}</h2>
+		<h3>Topics</h3>
 		<ol>
 			{% for topic in topics %}
 				<li><a href="{% url 'test' topic.id %}">{{ topic }}</a></li>

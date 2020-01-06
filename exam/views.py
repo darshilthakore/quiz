@@ -60,6 +60,7 @@ def topic_view(request, subject_code):
 		"topics": topics,
 		"activities": activity,
 		"user": fname,
+		"subject": Subject.objects.get(code=subject_code),
 	}
 
 	return render(request, "exam/topics.html", context)
@@ -107,10 +108,14 @@ def score_calculator(request, topic_id):
 				if choice.value == True:
 					actual_answer.append(choice.choice)
 		print(f"actual answers : {actual_answer}")
-		total_marks = len(actual_answer)			
+		total_marks = len(actual_answer)
+		info = []			
 		for i in range(len(response)):
 			if response[i] == actual_answer[i]:
+				info.append('correct')
 				marks += 1
+			else:
+				info.append('incorrect')
 		print(f"Marks are {marks} out of {total_marks}")
 
 
@@ -127,10 +132,10 @@ def score_calculator(request, topic_id):
 			"user": fname,
 			"actual_answer": actual_answer,
 			"response": response,
-			"var": zip(actual_answer, response),
+			"var": zip(actual_answer, response, info),
 			"activities": activity,
 			"user": fname,
-
+			"info": info,
 
 		}
 

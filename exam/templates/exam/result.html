@@ -16,13 +16,15 @@ Your Result | {{user}}
 				<th>Q no.</th>
 				<th>Answer.</th>
 				<th>Your Response</th>
+				<th>Correct/Incorrect</th>
 			</tr>
-			{% for a,b in var %}
+			{% for a,b,c in var %}
 			
 			<tr>
 				<td>{{forloop.counter}}</td>
 				<td>{{a}}</td>
-				<td>{{b}}</td>	
+				<td>{{b}}</td>
+				<td>{{c}}</td>	
 			</tr>
 
 			{% endfor %}			

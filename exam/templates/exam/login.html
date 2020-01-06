@@ -2,12 +2,14 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>Quizzo - Platform to conduct quizez online</title>
 		<link rel="stylesheet" type="text/css" href="{% static 'exam/login.css' %}">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
 	</head>
 	<body>
 		<header id="header">Quizzo - Give an online quiz of what interests you.</header>
+		<div class="container">
 		<div class="row">
 			<div class="logincolumn">
 				<h1>Login</h1>
@@ -18,9 +20,15 @@
 				{% endif %}
 				<form action="{% url 'login' %}" method="post">
 					{% csrf_token %}
-					<input type="text" name="username"/><br>
-					<input type="password" name="password"/><br>
-					<input type="submit" value="Login"/><br>
+					<div class="form-group">
+						<input type="text" name="username" required /><br>	
+					</div>
+					<div class="form-group">
+						<input type="password" name="password" required /><br>	
+					</div>
+					<div class="form-group">
+						<input class="btn btn-primary"type="submit" value="Login"/><br>	
+					</div>
 					
 				</form>
 			</div>
@@ -28,15 +36,33 @@
 				<h1>Register</h1>
 				<form action="{% url 'register' %}" method="post">
 					{% csrf_token %}
-					<input type="text" name="first" placeholder="First Name"/><br>
-					<input type="text" name="last" placeholder="Last Name"/><br>
-					<input type="text" name="username" placeholder="username"/><br>
-					<input type="password" name="password" placeholder="password"/><br>
-					<input type="email" name="email" placeholder="email"/><br>
-					<input type="submit" value="Register"><br>
+					<div class="form-group">
+						<input type="text" name="first" placeholder="First Name" required /><br>						
+					</div>
+					<div class="form-group">
+						<input type="text" name="last" placeholder="Last Name" required /><br>						
+					</div>
+					<div class="form-group">
+						<input type="text" name="username" placeholder="username" required /><br>						
+					</div>
+					<div class="form-group">
+						<input type="password" name="password" placeholder="password" required /><br>						
+					</div>
+					<div class="form-group">
+						<input type="email" name="email" placeholder="email" required /><br>						
+					</div>
+					<div class="form-group">
+						<input class="btn btn-primary" type="submit" value="Register"><br>						
+					</div>
+
+
+
+
+
 				</form>
 				
 			</div>
+		</div>
 		</div>
 	</body>
 </html>

@@ -32,8 +32,9 @@
 }
 
 .logout-btn a:hover {
-  background-color: lightgrey;
-  color: black;
+	text-decoration: none;
+	background-color: lightgrey;
+	color: black;
 }
 
 #header {
@@ -60,9 +61,10 @@ a {
 }
 
 a:hover {
+	text-decoration: none;
 	background-color: lightgrey;
 	color: black;
-	text-decoration: none;
+
 }
 
 .home-btn a {
@@ -76,6 +78,7 @@ a:hover {
 .home-btn a:hover {
   background-color: lightgrey;
   color: black;
+  text-decoration: none;
 }
 
 #header div {

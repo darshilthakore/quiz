@@ -32,7 +32,9 @@ Test | {{user}}
 		console.log("currentTab is " + currentTab);	
 		showTab(currentTab);
 
-
+		window.onbeforeunload = () => {
+        	return "Dude, are you sure you want to leave? Think of the kittens!";
+    	}
 	});
 
 	var curr = 0;
@@ -57,9 +59,16 @@ Test | {{user}}
 			// var x = document.querySelectorAll('[name={{question.id}}]');
 		
 			var value = obj.name;
+
+			if (obj.type === "checkbox"){
+				var button = document.getElementById(value);
+				button.style.backgroundColor = "yellow";
+			} else {
 				// var test = document.querySelectorAll('[name={{question.id}}]');
-			var button = document.getElementById(value);
-			button.style.backgroundColor = "green";
+				var button = document.getElementById(value);
+				button.style.backgroundColor = "green";
+			}
+
 		}
 
 	}
@@ -99,6 +108,7 @@ Test | {{user}}
 					<div class="que">
 					
 						<b>Question.{{forloop.counter}}</b> <i>{{ question.question }}</i>
+						<input type="checkbox" name="{{question.id}}" value="True" onchange="btnch(this)">Flag <br>
 						<ol type="A">
 							{% for choice in question.choices.all %}
 								<li><input type="radio" name="{{question.id}}" value="{{choice.choice}}" onchange="btnch(this)">{{choice.choice}}<br></li>
