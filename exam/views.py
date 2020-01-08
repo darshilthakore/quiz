@@ -72,12 +72,15 @@ def test_view(request, topic_id):
 	print("im in test")
 	questions = Question.objects.filter(topic=topic_id)
 	fname = request.user.first_name
+	topic = Topic.objects.get(pk=topic_id)
+	time = topic.time
 	activity = Result.objects.filter(user=fname)
 	context = {
 		"questions": questions,
 		"topicid": topic_id,
 		"activities": activity,
 		"user": fname,
+		"time": time,
 	}
 
 	return render(request, "exam/test.html", context)	
