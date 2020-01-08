@@ -88,3 +88,14 @@ a:hover {
 #searcharea {
 	display: none;
 }
+
+table, th, td {
+	border: 1px solid black;
+	border-collapse: collapse;
+}
+
+#result {
+	display: block;
+	background-color: green;
+	color: white;
+}

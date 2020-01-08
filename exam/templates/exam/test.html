@@ -9,18 +9,47 @@ Test | {{user}}
 	alert("Instructions");
 
 	document.addEventListener('DOMContentLoaded', () => {
-		var count = 15;
+		
+		var timer = 0.5*60, minutes, seconds;
+
 		var interval = setInterval(() => {
-			document.querySelector('#time').innerHTML = count;
-			count--;
-			if (count === 0) {
-				clearInterval(interval);
-				// document.querySelector('#time').innerHTML = "Timeup";
+
+
+			minutes = parseInt(timer / 60, 10);
+	        seconds = parseInt(timer % 60, 10);
+
+	        minutes = minutes < 10 ? "0" + minutes : minutes;
+	        seconds = seconds < 10 ? "0" + seconds : seconds;
+
+			document.querySelector('#time').innerHTML = minutes + ":" + seconds;
+			
+			if (--timer < 0) {
+	            // timer = ;
+				document.querySelector('#time').innerHTML = "Timeup";
 				alert("Timeup");
 				var form = document.querySelector('#myform');
 				form.submit();
+	        }
+			// if (seconds === 0) {
+			// 	seconds = 59;
+			// 	if (minutes === 0) {
+			// 		clearInterval(interval);
+				
+			// 		// document.querySelector('#time').innerHTML = "Timeup";
+			// 		alert("Timeup");
+			// 		var form = document.querySelector('#myform');
+			// 		form.submit();
+			// 	}
+			// 	minutes--;
 
-			}
+
+			// } else if (seconds < 10) {
+			// 	seconds = '0' + seconds;
+			// 	seconds--;
+			// } else {
+			// 	seconds--;
+			// }
+
 		}, 1000);
 		
 		// {% for question in questions %}

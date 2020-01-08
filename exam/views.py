@@ -114,10 +114,10 @@ def score_calculator(request, topic_id):
 		info = []			
 		for i in range(len(response)):
 			if response[i] == actual_answer[i]:
-				info.append('correct')
+				info.append('Correct')
 				marks += 1
 			else:
-				info.append('incorrect')
+				info.append('Incorrect')
 		print(f"Marks are {marks} out of {total_marks}")
 
 
