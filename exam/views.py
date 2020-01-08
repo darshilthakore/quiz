@@ -1,9 +1,10 @@
+import json
 from django.shortcuts import render
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponse, HttpResponseRedirect, Http404, JsonResponse
 from django.urls import reverse
-
+from django.core import serializers
 # Create your views here.
 from .models import Subject, Topic, Question, Choice, Result
 
@@ -18,6 +19,7 @@ def index(request):
 		"subjects" : Subject.objects.all(),
 		"activities": activity,
 		"user": fname,
+		"topics": Topic.objects.all(),
 	}
 
 	return render(request, "exam/index.html", context)
@@ -141,3 +143,16 @@ def score_calculator(request, topic_id):
 
 
 		return render(request, "exam/result.html", context)
+
+def search_view(request):
+	print("im in search_view")
+	text = request.POST['search_text']
+	text = text.lower()
+	res = Topic.objects.filter(name__contains=text).values('id', 'name', 'code', 'subject')
+
+	print(f"search results: {res}")
+	# context = {
+	# 	"res": res,
+	# }
+	# print(f"{data}")
+	return JsonResponse({'res': list(res)})

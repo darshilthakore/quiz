@@ -5,9 +5,94 @@ Dashboard | {{user}}
 
 {% endblock %}
 
+<!-- <script>
+	document.querySelector('#search').onkeyup = () => {
+		const search_text = document.querySelector('#search').value;
+
+		const request = new XMLHttpRequest();
+
+		request.open('POST', 'search');
+		request.setRequestHeader("X-CSRFToken", "{{ csrf_token }}");
+		request.onload = () => {
+			const data = JSON.parse(request.responseText);
+
+
+		}
+
+		const data = new FormData();
+		data.append('search_text', search_text);
+		request.send(data);
+	}
+
+</script>
+ -->
+
 {% block body %}
+
+<script>
+	document.addEventListener('DOMContentLoaded', () => {
+		document.querySelector('#search').onkeyup = () => {
+			var searchtext = document.querySelector('#search');
+			if (searchtext.value !== "") {
+				document.querySelector('#subject').style.display = "none";
+				document.querySelector('#topic').style.display = "none";
+				const search_text = searchtext.value;
+
+				const request = new XMLHttpRequest();
+
+				request.open('POST', 'search');
+				request.setRequestHeader("X-CSRFToken", "{{ csrf_token }}");
+				request.onload = () => {
+					const data = JSON.parse(request.responseText);
+					console.log(data.res);
+					for (x of data.res){
+						console.log(x);
+						foo(x);
+					}
+					// {% for x in data %}
+					// 	console.log(x.name);
+					// {% endfor %}
+				}
+
+				const data = new FormData();
+				data.append('search_text', search_text);
+				request.send(data);
+						
+			} else {
+				document.querySelector('#searcharea').innerHTML = "";
+				document.querySelector('#subject').style.display = "block";
+				document.querySelector('#topic').style.display = "block";
+			}
+		}
+		function foo(contents) {
+			console.log(contents);
+			const link = document.createElement('a');
+			link.innerHTML = contents.subject + "-" + contents.code + "|" + contents.name;
+			var url = "{% url 'test' 123 %}";
+			var id = contents.id;
+			link.href = url.replace('123', contents.id)
+
+			document.querySelector('#searcharea').append(link);
+		}	
+	});
 	
+	
+</script>
+
 	<div>
+		<form>
+			{% csrf_token %}
+			<input id="search" type="text" name="search" autocomplete="on" placeholder="Search for topics, subjects">
+<!-- 			<datalist id="searchresults">
+				{% for topic in topics %}
+				<option value="{{topic}}"></option>
+				{% endfor %}
+			</datalist> -->
+			<input class="btn btn-primary" type="submit" value="Search">
+		</form>
+	</div>
+	
+	<div id="subject">
 		<h2>Subjects</h2>
 		<ul>
 			{% for subject in subjects %}
@@ -17,6 +102,20 @@ Dashboard | {{user}}
 			{% endfor %}
 		</ul>
 
+	</div>
+
+	<div id="topic">
+		<h2>All Topics</h2>
+		<ul>
+			{% for topic in topics %}
+				<li><a href="{% url 'test' topic.id %}">{{ topic }}</a></li>
+			{% empty %}
+				<b>No topics.</b>
+			{% endfor %}
+		</ul>
+	</div>
+	<div id="searcharea">
+		
 	</div>
 
 
