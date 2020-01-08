@@ -30,21 +30,19 @@ Dashboard | {{user}}
 {% block body %}
 
 <script id="link" type="text/x-handlebars-template">
-	<h2>Search Results</h2>
-	<div class="link">
-		<ul>
-			<li>
-				<a href="{% verbatim %}{{ link }}{% endverbatim %}">{% verbatim %} {{ name }} {% endverbatim %}</a>
-			</li>
-		</ul>
-	</div>
 
+	<li>
+		<a href="{% verbatim %}{{ link }}{% endverbatim %}">{% verbatim %} {{ name }} {% endverbatim %}</a>
+	</li>
+		
 </script>
 <script>
 	document.addEventListener('DOMContentLoaded', () => {
 		document.querySelector('#search').onkeyup = () => {
 			var searchtext = document.querySelector('#search');
 			if (searchtext.value !== "") {
+				document.querySelector('#ul').innerHTML = "";
+				document.querySelector('#searcharea').style.display = "block";
 				document.querySelector('#subject').style.display = "none";
 				document.querySelector('#topic').style.display = "none";
 				const search_text = searchtext.value;
@@ -70,9 +68,11 @@ Dashboard | {{user}}
 				request.send(data);
 						
 			} else {
-				document.querySelector('#searcharea').innerHTML = "";
+
 				document.querySelector('#subject').style.display = "block";
 				document.querySelector('#topic').style.display = "block";
+				document.querySelector('#ul').innerHTML = "";
+				document.querySelector('#searcharea').style.display = "none";
 			}
 		}
 		// function foo(contents) {
@@ -99,7 +99,7 @@ Dashboard | {{user}}
 			console.log('link:' + m);
 			const link = link_template({'name': name, 'link': m});
 
-			document.querySelector('#searcharea').innerHTML = link;
+			document.querySelector('#ul').innerHTML += link;
 		}	
 	});
 	
@@ -109,7 +109,7 @@ Dashboard | {{user}}
 	<div>
 		<form>
 			{% csrf_token %}
-			<input id="search" type="text" name="search" autocomplete="on" placeholder="Search for topics, subjects">
+			<input id="search" type="text" name="search" autocomplete="off" placeholder="Search for topics here">
 <!-- 			<datalist id="searchresults">
 				{% for topic in topics %}
 				<option value="{{topic}}"></option>
@@ -142,7 +142,10 @@ Dashboard | {{user}}
 		</ul>
 	</div>
 	<div id="searcharea">
-		
+		<h2>Search Results</h2>
+		<ul id="ul">
+			
+		</ul>
 	</div>
 
 
