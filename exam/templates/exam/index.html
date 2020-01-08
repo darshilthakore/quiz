@@ -29,6 +29,17 @@ Dashboard | {{user}}
 
 {% block body %}
 
+<script id="link" type="text/x-handlebars-template">
+	<h2>Search Results</h2>
+	<div class="link">
+		<ul>
+			<li>
+				<a href="{% verbatim %}{{ link }}{% endverbatim %}">{% verbatim %} {{ name }} {% endverbatim %}</a>
+			</li>
+		</ul>
+	</div>
+
+</script>
 <script>
 	document.addEventListener('DOMContentLoaded', () => {
 		document.querySelector('#search').onkeyup = () => {
@@ -47,7 +58,7 @@ Dashboard | {{user}}
 					console.log(data.res);
 					for (x of data.res){
 						console.log(x);
-						foo(x);
+						add_link(x);
 					}
 					// {% for x in data %}
 					// 	console.log(x.name);
@@ -64,15 +75,31 @@ Dashboard | {{user}}
 				document.querySelector('#topic').style.display = "block";
 			}
 		}
-		function foo(contents) {
-			console.log(contents);
-			const link = document.createElement('a');
-			link.innerHTML = contents.subject + "-" + contents.code + "|" + contents.name;
+		// function foo(contents) {
+		// 	console.log(contents);
+		// 	const link = document.createElement('a');
+		// 	link.innerHTML = contents.subject + "-" + contents.code + "|" + contents.name;
+		// 	var url = "{% url 'test' 123 %}";
+		// 	var id = contents.id;
+		// 	link.href = url.replace('123', contents.id)
+
+		// 	document.querySelector('#searcharea').append(link);
+		// }
+
+
+
+		const link_template = Handlebars.compile(document.querySelector('#link').innerHTML);
+		function add_link(contents) {
+			const name = contents.subject + "-" + contents.code + "|" + contents.name;
+			console.log(name);
 			var url = "{% url 'test' 123 %}";
 			var id = contents.id;
-			link.href = url.replace('123', contents.id)
+			const m = url.replace('123', contents.id);
+			console.log('in add_link');
+			console.log('link:' + m);
+			const link = link_template({'name': name, 'link': m});
 
-			document.querySelector('#searcharea').append(link);
+			document.querySelector('#searcharea').innerHTML = link;
 		}	
 	});
 	
@@ -88,7 +115,7 @@ Dashboard | {{user}}
 				<option value="{{topic}}"></option>
 				{% endfor %}
 			</datalist> -->
-			<input class="btn btn-primary" type="submit" value="Search">
+			<!-- <input class="btn btn-primary" type="submit" value="Search"> -->
 		</form>
 	</div>
 	
