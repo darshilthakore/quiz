@@ -28,6 +28,8 @@
 	text-decoration: none;
 	font-size: 20px;
 	color: black;
+	position: relative;
+	left: 200px;
 /*	display: block;*/
 }
 
@@ -72,6 +74,8 @@ a:hover {
 	text-decoration: none;
 	font-size: 20px;
 	color: black;
+	position: relative;
+	left: 200px;
 /*	display: block;*/
 }
 
