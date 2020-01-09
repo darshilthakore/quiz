@@ -29,7 +29,7 @@
 	font-size: 20px;
 	color: black;
 	position: relative;
-	left: 200px;
+	left: 150px;
 /*	display: block;*/
 }
 
@@ -75,7 +75,7 @@ a:hover {
 	font-size: 20px;
 	color: black;
 	position: relative;
-	left: 200px;
+	left: 150px;
 /*	display: block;*/
 }
 
@@ -102,4 +102,8 @@ table, th, td {
 	display: block;
 	background-color: green;
 	color: white;
+}
+
+#instructions {
+	width: 70%;
 }

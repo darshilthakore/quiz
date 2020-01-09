@@ -12,7 +12,7 @@ Dashboard | {{user}}
 		<h3>Topics</h3>
 		<ol>
 			{% for topic in topics %}
-				<li><a href="{% url 'test' topic.id %}">{{ topic }}</a></li>
+				<li><a href="{% url 'instructions' topic.id %}">{{ topic }}</a></li>
 			{% empty %}
 				<b>No topics.</b>
 			{% endfor %}
@@ -36,4 +36,9 @@ Dashboard | {{user}}
 			<b>No Recent Activity.</b>
 		{% endfor %}
 	</ol>	
+{% endblock %}
+
+
+{% block user %}
+	<b> {{user}} </b>
 {% endblock %}

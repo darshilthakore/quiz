@@ -10,6 +10,8 @@
 	</head>
 	<body class="mainbody">
 		<header id="header">Quizzo - Give an online quiz of what interests you.
+			{% block user %}
+			{% endblock %}
 			<div class="home-btn">
 				<a href="{% url 'index' %}">Home</a>
 			</div>

@@ -1,0 +1,47 @@
+{% extends "exam/base.html" %}
+
+{% block title %}
+ {{testname}}| Instructions
+
+{% endblock %}
+
+{% block body %}
+
+<div id="instructions">
+	<h2>Instructions for {{testname}}</h2>
+
+	<ul><b>Read following instructions very carefully before beginning the Test.</b>
+		<li>Once the test begins, please do not <b>reload/refresh/Click back button or try to close the window</b>.</li>
+		<li>The duration for this test is <b>{{time}} minutes</b></li>
+		<li>You can navigate through the questions by clicking the buttons which corresponds to a particular question.</li>
+		<li>If you need to come back to the question for final changes, there is an option to <b>flag</b> the question, which will change the color of the button corresponding to that question to <b>yellow</b>.</li>
+		<li>When you select a choice, the color of the button corresponding to that question will change to <b>green</b>, any question where selection is not made won't change their button color status.</li>
+		<li>After the time limit is reached, the test will be submitted automatically.</li>
+		<li>You can submit the test before the time limit is reached by clicking on the <b>Finish Test</b> button.</li>
+		<li>After finishing the test, you can then check your score for the test along with your responses and the correct answer key.</li>
+	</ul>
+
+
+	<a href="{% url 'test' topicid %}">Start the Test</a>
+</div>
+
+{% endblock %}
+
+{% block content %}
+	<ol>
+		{% for activity in activities %}
+			<li type="1">
+				<b>Test: {{activity.topic}}</b>
+				<ul>
+					<li>Score : {{activity.marks_obtained}} out of {{activity.marks_total}}</li>
+				</ul>
+			</li>
+		{% empty %}
+			<b>No Recent Activity.</b>
+		{% endfor %}
+	</ol>	
+{% endblock %}
+
+{% block user %}
+	<b> {{user}} </b>
+{% endblock %}

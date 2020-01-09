@@ -6,7 +6,7 @@ Test | {{user}}
 
 {% block body %}
 <script>
-	alert("Instructions");
+	// alert("Instructions");
 
 	document.addEventListener('DOMContentLoaded', () => {
 		
@@ -26,7 +26,7 @@ Test | {{user}}
 			if (--timer < 0) {
 	            // timer = ;
 				document.querySelector('#time').innerHTML = "Timeup";
-				alert("Timeup");
+				// alert("Timeup");
 				var form = document.querySelector('#myform');
 				form.submit();
 	        }
@@ -170,4 +170,8 @@ Test | {{user}}
 			<b>No Recent Activity.</b>
 		{% endfor %}
 	</ol>	
+{% endblock %}
+
+{% block user %}
+	<b> {{user}} </b>
 {% endblock %}

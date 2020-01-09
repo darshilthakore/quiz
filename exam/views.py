@@ -68,6 +68,22 @@ def topic_view(request, subject_code):
 	return render(request, "exam/topics.html", context)
 
 
+def instruction_view(request, topic_id):
+	print("im in instructions")
+	fname = request.user.first_name
+	topic = Topic.objects.get(pk=topic_id)
+	time = topic.time
+	activity = Result.objects.filter(user=fname)
+	context = {
+		"topicid": topic_id,
+		"activities": activity,
+		"user": fname,
+		"time": time,
+		"testname": topic,
+	}
+
+	return render(request, "exam/instructions.html", context)
+
 def test_view(request, topic_id):
 	print("im in test")
 	questions = Question.objects.filter(topic=topic_id)
