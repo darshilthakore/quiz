@@ -60,7 +60,7 @@ Dashboard | {{user}}
 		function add_link(contents) {
 			const name = contents.subject + "-" + contents.code + "|" + contents.name;
 			console.log(name);
-			var url = "{% url 'test' 123 %}";
+			var url = "{% url 'instructions' 123 %}";
 			var id = contents.id;
 			const m = url.replace('123', contents.id);
 			console.log('in add_link');

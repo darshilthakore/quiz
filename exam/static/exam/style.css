@@ -13,7 +13,7 @@
 
 .recent {
 	height: 100%;
-	width: 300px;
+	width: 20%;
 	border: 1px solid;
 	position: fixed;
 	z-index: 1;
@@ -106,4 +106,16 @@ table, th, td {
 
 #instructions {
 	width: 70%;
+}
+
+
+#random {
+	width: 70%;
+}
+
+
+@media (min-width: 200px;) {
+	.recent {
+		display: none;
+	}
 }

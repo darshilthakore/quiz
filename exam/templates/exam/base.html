@@ -9,6 +9,7 @@
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
 	</head>
 	<body class="mainbody">
+		<div id="random">
 		<header id="header">Quizzo - Give an online quiz of what interests you.
 			{% block user %}
 			{% endblock %}
@@ -23,7 +24,7 @@
 
 		{% block body %}
 		{% endblock %}
-
+		</div>
 		<div class="recent">
 			<h2 align="center">Recent Activity</h2>
 			{% block content %}
