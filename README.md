@@ -68,7 +68,7 @@ Also the list of all the topics of various subjects is shown on the index.html p
 
 On the right side, there is an Recent activity pane, where user can keep track of their recent tests given and the score obtained in that test.
 
-An option to logout is provided for logging out the user and an option to the switch to the Home page, which is index.html page.
+An option to logout is provided for logging out the user and an option to the switch to the Home page, which is __index.html__ page.
 
 
 ## topics.html
@@ -79,10 +79,10 @@ In __topics.html__ file, user can then see the topics for that subject and can s
 
 ## instructions.html
 
-After clicking the topic, user is redirected to the `instruction_view` in __views.py__ where necessary information from database is fetched and rendered to the instructions.html page.
+After clicking the topic, user is redirected to the `instruction_view` in __views.py__ where necessary information from database is fetched and rendered to the __instructions.html__ page.
 
 
-instructions.html page contains the necessary information to keep in mind before beginning the test.
+__instructions.html__ page contains the necessary information to keep in mind before beginning the test.
 
 After reading the instructions, user can click on __Give The Test__ link.
 

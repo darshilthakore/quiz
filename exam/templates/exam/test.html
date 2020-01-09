@@ -9,8 +9,8 @@ Test | {{user}}
 	// alert("Instructions");
 
 	document.addEventListener('DOMContentLoaded', () => {
-		
-		var timer = {{ time }}*60, minutes, seconds;
+		var min = document.querySelector('#timelimit').getAttribute('data-displayname');
+		var timer = min*60, minutes, seconds;
 
 		var interval = setInterval(() => {
 
@@ -106,7 +106,8 @@ Test | {{user}}
 		var x = document.getElementsByClassName("que");
 		console.log("curr inside nav is" + curr);
 		x[curr].style.display = "none";
-		var questionno = obj.id - 1;
+		console.log("object id is:" + obj.id);
+		var questionno = obj.name - 1;
 		console.log("questionno inside nave is" + questionno);
 		// curr = questionno;
 		showTab(questionno);
@@ -119,13 +120,13 @@ Test | {{user}}
 
 
 </script>
-
+	<meta id="timelimit" data-displayname="{{time}}">
 	<div>
 		<h2>Quiz</h2>
 		<b>Time: <div id="time">Test Begins</div></b>
 		<div>
 			{% for question in questions %}
-				<button class="navbtn" id="{{question.id}}" onclick="nav(this)">{{forloop.counter}}</button>
+				<button class="navbtn" id="{{question.id}}" name="{{forloop.counter}}" onclick="nav(this)">{{forloop.counter}}</button>
 			{% endfor %}
 		</div>
 		<ol>
