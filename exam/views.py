@@ -5,6 +5,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponse, HttpResponseRedirect, Http404, JsonResponse
 from django.urls import reverse
 from django.core import serializers
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 from .models import Subject, Topic, Question, Choice, Result
 
@@ -52,7 +53,7 @@ def register_view(request):
 
 	return HttpResponseRedirect(reverse("index"))
 
-
+@login_required(login_url='/')
 def topic_view(request, subject_code):
 	print("im in topic_view")
 	topics = Topic.objects.filter(subject=subject_code)
@@ -68,6 +69,7 @@ def topic_view(request, subject_code):
 	return render(request, "exam/topics.html", context)
 
 
+@login_required(login_url='/')
 def instruction_view(request, topic_id):
 	print("im in instructions")
 	fname = request.user.first_name
@@ -84,6 +86,7 @@ def instruction_view(request, topic_id):
 
 	return render(request, "exam/instructions.html", context)
 
+@login_required(login_url='/')
 def test_view(request, topic_id):
 	print("im in test")
 	questions = Question.objects.filter(topic=topic_id)
@@ -102,6 +105,7 @@ def test_view(request, topic_id):
 	return render(request, "exam/test.html", context)	
 
 
+@login_required(login_url='/')
 def score_calculator(request, topic_id):
 	if request.method == "POST":
 		fname = request.user.first_name
@@ -163,6 +167,7 @@ def score_calculator(request, topic_id):
 
 		return render(request, "exam/result.html", context)
 
+@login_required(login_url='/')
 def search_view(request):
 	print("im in search_view")
 	text = request.POST['search_text']

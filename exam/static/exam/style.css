@@ -12,9 +12,11 @@
 
 
 .recent {
+	
 	height: 100%;
 	width: 20%;
 	border: 1px solid;
+	float: left;
 	position: fixed;
 	z-index: 1;
 	top: 0;
@@ -45,7 +47,7 @@
 	margin-bottom: 300px;
 	display: inline;
 	background-color: skyblue;
-	width: 100%;
+	width: 80%;
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -109,8 +111,9 @@ table, th, td {
 }
 
 
-#random {
-	width: 70%;
+.random {
+	float:left;
+	width: 80%;
 }
 
 
